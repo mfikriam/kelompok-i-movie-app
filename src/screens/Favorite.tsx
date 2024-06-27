@@ -1,36 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { View, StatusBar, StyleSheet, Text, FlatList, Dimensions, TouchableOpacity } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import MovieItem from '../components/movies/MovieItem';
-import type { Movie } from '../types/app';
-import { useIsFocused } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react'
+import {
+  View,
+  StatusBar,
+  StyleSheet,
+  FlatList,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import MovieItem from '../components/movies/MovieItem'
+import type { Movie } from '../types/app'
+import { useIsFocused } from '@react-navigation/native'
 
 export default function Favorite(): JSX.Element {
-
-  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
+  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([])
   const { width } = Dimensions.get('window')
   const isFocused = useIsFocused()
 
   useEffect(() => {
     if (isFocused) {
-      fetchFavoriteMovies();
+      fetchFavoriteMovies()
     }
-  }, [isFocused]);
+  }, [isFocused])
 
   const fetchFavoriteMovies = async (): Promise<void> => {
     try {
-      const favoriteMoviesData: string | null = await AsyncStorage.getItem('@FavoriteList');
+      const favoriteMoviesData: string | null =
+        await AsyncStorage.getItem('@FavoriteList')
       if (favoriteMoviesData) {
-        const favoriteMoviesList: Movie[] = JSON.parse(favoriteMoviesData);
-        setFavoriteMovies(favoriteMoviesList);
+        const favoriteMoviesList: Movie[] = JSON.parse(favoriteMoviesData)
+        setFavoriteMovies(favoriteMoviesList)
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
   const renderSeparator = (): JSX.Element => {
-    return <View style={styles.separator} />;
+    return <View style={styles.separator} />
   }
 
   return (
@@ -78,4 +85,3 @@ const styles = StyleSheet.create({
     height: 8,
   },
 })
-

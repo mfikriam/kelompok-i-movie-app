@@ -1,20 +1,28 @@
 import { LinearGradient } from 'expo-linear-gradient'
 import React, { useEffect, useState } from 'react'
-import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import MovieList from '../components/movies/MovieList'
 import { API_ACCESS_TOKEN } from '@env'
 import { FontAwesome } from '@expo/vector-icons'
 import { Movie, MovieListProps } from '../types/app'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const MovieDetail = ({ route }: any): JSX.Element => {
   const { id } = route.params
   const [detailMovie, setDetailMovie] = useState<Movie | null>(null)
-  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
-useEffect(() => {
+  useEffect(() => {
     getDetailMovie()
-    checkIsFavorite();
+    checkIsFavorite()
   }, [id])
 
   const getDetailMovie = async (): Promise<void> => {
@@ -40,7 +48,7 @@ useEffect(() => {
 
   console.log(detailMovie)
 
-const recomendations : MovieListProps = {
+  const recomendations: MovieListProps = {
     title: 'Recomendations',
     path: `/movie/${id}/recommendations`,
     coverType: 'poster',
@@ -48,48 +56,51 @@ const recomendations : MovieListProps = {
 
   const addFavorite = async (movie: Movie): Promise<void> => {
     try {
-      const initialData: string | null = await AsyncStorage.getItem('@FavoriteList');
-      let favMovieList: Movie[] = initialData ? JSON.parse(initialData) : [];
-      favMovieList = [...favMovieList, movie];
-      await AsyncStorage.setItem('@FavoriteList', JSON.stringify(favMovieList));
-      setIsFavorite(true);
+      const initialData: string | null =
+        await AsyncStorage.getItem('@FavoriteList')
+      let favMovieList: Movie[] = initialData ? JSON.parse(initialData) : []
+      favMovieList = [...favMovieList, movie]
+      await AsyncStorage.setItem('@FavoriteList', JSON.stringify(favMovieList))
+      setIsFavorite(true)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const removeFavorite = async (id: number): Promise<void> => {
     try {
-      const initialData: string | null = await AsyncStorage.getItem('@FavoriteList');
-      let favMovieList: Movie[] = initialData ? JSON.parse(initialData) : [];
-      favMovieList = favMovieList.filter((movie) => movie.id !== id);
-      await AsyncStorage.setItem('@FavoriteList', JSON.stringify(favMovieList));
-      setIsFavorite(false);
+      const initialData: string | null =
+        await AsyncStorage.getItem('@FavoriteList')
+      let favMovieList: Movie[] = initialData ? JSON.parse(initialData) : []
+      favMovieList = favMovieList.filter((movie) => movie.id !== id)
+      await AsyncStorage.setItem('@FavoriteList', JSON.stringify(favMovieList))
+      setIsFavorite(false)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const checkIsFavorite = async (): Promise<void> => {
     try {
-      const initialData: string | null = await AsyncStorage.getItem('@FavoriteList');
-      const favMovieList: Movie[] = initialData ? JSON.parse(initialData) : [];
-      const isFav = favMovieList.some((movie) => movie.id === id);
-      setIsFavorite(isFav);
+      const initialData: string | null =
+        await AsyncStorage.getItem('@FavoriteList')
+      const favMovieList: Movie[] = initialData ? JSON.parse(initialData) : []
+      const isFav = favMovieList.some((movie) => movie.id === id)
+      setIsFavorite(isFav)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   const toggleFavorite = (): void => {
     if (detailMovie) {
       if (isFavorite) {
-        removeFavorite(detailMovie.id);
+        removeFavorite(detailMovie.id)
       } else {
-        addFavorite(detailMovie);
+        addFavorite(detailMovie)
       }
     }
-  };
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -97,7 +108,9 @@ const recomendations : MovieListProps = {
         <>
           {detailMovie.backdrop_path ? (
             <ImageBackground
-              source={{ uri: `https://image.tmdb.org/t/p/w500${detailMovie.backdrop_path}` }}
+              source={{
+                uri: `https://image.tmdb.org/t/p/w500${detailMovie.backdrop_path}`,
+              }}
               style={styles.backdrop}
             >
               <LinearGradient
@@ -109,10 +122,16 @@ const recomendations : MovieListProps = {
                 <View style={styles.rowRatingFavoriteContainer}>
                   <View style={styles.ratingContainer}>
                     <FontAwesome name="star" size={14} color="yellow" />
-                    <Text style={styles.rating}>{detailMovie.vote_average.toFixed(1)}</Text>
+                    <Text style={styles.rating}>
+                      {detailMovie.vote_average.toFixed(1)}
+                    </Text>
                   </View>
                   <TouchableOpacity onPress={toggleFavorite}>
-                    <FontAwesome name={isFavorite ? "heart" : "heart-o"} size={24} color="red" />
+                    <FontAwesome
+                      name={isFavorite ? 'heart' : 'heart-o'}
+                      size={24}
+                      color="red"
+                    />
                   </TouchableOpacity>
                 </View>
               </LinearGradient>
@@ -128,7 +147,9 @@ const recomendations : MovieListProps = {
             <View style={styles.infoRow}>
               <View style={styles.infoColumn}>
                 <Text style={styles.infoLabel}>Original Language</Text>
-                <Text style={styles.infoValue}>{detailMovie.original_language}</Text>
+                <Text style={styles.infoValue}>
+                  {detailMovie.original_language}
+                </Text>
               </View>
               <View style={styles.infoColumn}>
                 <Text style={styles.infoLabel}>Popularity</Text>
@@ -138,7 +159,9 @@ const recomendations : MovieListProps = {
             <View style={styles.infoRow}>
               <View style={styles.infoColumn}>
                 <Text style={styles.infoLabel}>Release Date</Text>
-                <Text style={styles.infoValue}>{new Date(detailMovie.release_date).toDateString()}</Text>
+                <Text style={styles.infoValue}>
+                  {new Date(detailMovie.release_date).toDateString()}
+                </Text>
               </View>
               <View style={styles.infoColumn}>
                 <Text style={styles.infoLabel}>Vote Count</Text>
@@ -190,13 +213,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
-    marginBottom: 2
+    marginBottom: 2,
   },
   rating: {
     color: 'yellow',
     fontSize: 18,
     fontWeight: '700',
-    marginBottom: 2
+    marginBottom: 2,
   },
   gradientStyle: {
     padding: 8,
@@ -254,4 +277,3 @@ const styles = StyleSheet.create({
 })
 
 export default MovieDetail
-
