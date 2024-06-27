@@ -13,16 +13,17 @@ export default function Favorite(): JSX.Element {
 
   useEffect(() => {
     if (isFocused) {
-      fetchFavoriteMovies();
+      fetchFavoriteMovies()
     }
-  }, [isFocused]);
+  }, [isFocused])
 
   const fetchFavoriteMovies = async (): Promise<void> => {
     try {
-      const favoriteMoviesData: string | null = await AsyncStorage.getItem('@FavoriteList');
+      const favoriteMoviesData: string | null =
+        await AsyncStorage.getItem('@FavoriteList')
       if (favoriteMoviesData) {
-        const favoriteMoviesList: Movie[] = JSON.parse(favoriteMoviesData);
-        setFavoriteMovies(favoriteMoviesList);
+        const favoriteMoviesList: Movie[] = JSON.parse(favoriteMoviesData)
+        setFavoriteMovies(favoriteMoviesList)
       }
       setIsLoading(false); 
     } catch (error) {
@@ -32,8 +33,8 @@ export default function Favorite(): JSX.Element {
   };
 
   const renderSeparator = (): JSX.Element => {
-    return <View style={styles.separator} />;
-  };
+  return <View style={styles.separator} />;
+ };
 
   return (
     <View style={styles.container}>
