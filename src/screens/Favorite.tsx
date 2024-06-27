@@ -1,15 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, FlatList, TouchableOpacity, StatusBar } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import MovieItem from '../components/movies/MovieItem';
-import { useIsFocused } from '@react-navigation/native';
-import type { Movie } from '../types/app';
+import React, { useState, useEffect } from 'react'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  FlatList,
+  TouchableOpacity,
+  StatusBar,
+} from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import MovieItem from '../components/movies/MovieItem'
+import { useIsFocused } from '@react-navigation/native'
+import type { Movie } from '../types/app'
 
 export default function Favorite(): JSX.Element {
-  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const { width } = Dimensions.get('window');
-  const isFocused = useIsFocused();
+  const [favoriteMovies, setFavoriteMovies] = useState<Movie[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const { width } = Dimensions.get('window')
+  const isFocused = useIsFocused()
 
   useEffect(() => {
     if (isFocused) {
@@ -25,26 +33,26 @@ export default function Favorite(): JSX.Element {
         const favoriteMoviesList: Movie[] = JSON.parse(favoriteMoviesData)
         setFavoriteMovies(favoriteMoviesList)
       }
-      setIsLoading(false); 
+      setIsLoading(false)
     } catch (error) {
-      console.log(error);
-      setIsLoading(false); 
+      console.log(error)
+      setIsLoading(false)
     }
-  };
+  }
 
   const renderSeparator = (): JSX.Element => {
-  return <View style={styles.separator} />;
- };
+    return <View style={styles.separator} />
+  }
 
   return (
     <View style={styles.container}>
       {isLoading ? (
-        <View style={styles.centeredView}>
-          
-        </View>
+        <View style={styles.centeredView}></View>
       ) : favoriteMovies.length === 0 ? (
         <View style={styles.centeredView}>
-          <Text style={styles.title}>You don't have a favorite movie yet</Text>
+          <Text
+            style={styles.title}
+          >{`You don't have a favorite movie yet`}</Text>
         </View>
       ) : (
         <FlatList
@@ -65,7 +73,7 @@ export default function Favorite(): JSX.Element {
         />
       )}
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -95,4 +103,4 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 8,
   },
-});
+})
