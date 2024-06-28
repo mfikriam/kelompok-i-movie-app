@@ -27,6 +27,14 @@ This application allows users to see information about films currently showing i
 
 Displays a list of films currently showing in cinemas, films that will be shown, films with top ratings, and films that are currently popular.
 
+<p align="center">
+  <img src="assets\img-preview\home-page\home-1.png" width="25%">
+  <span style="margin: 0 9%;"></span>
+  <img src="assets\img-preview\home-page\home-2.png" width="25%">
+  <span style="margin: 0 9%;"></span>
+  <img src="assets\img-preview\home-page\home-3.png" width="25%">
+</p>
+
 **Search By Keyword**
 
 Allows users to search for films based on keywords in the title or overview of the film.
