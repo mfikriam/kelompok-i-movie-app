@@ -29,9 +29,7 @@ Displays a list of films currently showing in cinemas, films that will be shown,
 
 <p align="center">
   <img src="assets/img-preview/home-page/home-1.png" width="20%" style="margin-right: 10%;">
-  <span style="margin: 0 9%;"></span> <!-- Jarak antara dua gambar -->
   <img src="assets/img-preview/home-page/home-2.png" width="20%" style="margin-right: 10%;">
-  <span style="margin: 0 9%;"></span> <!-- Jarak antara dua gambar -->
   <img src="assets/img-preview/home-page/home-3.png" width="20%">
 </p>
 
@@ -39,10 +37,27 @@ Displays a list of films currently showing in cinemas, films that will be shown,
 
 Allows users to search for films based on keywords in the title or overview of the film.
 
+<p align="center">
+  <img src="assets/img-preview/search-by-keyword-page/keyword-1.png" width="20%" style="margin-right: 10%;">
+  <img src="assets/img-preview/search-by-keyword-page/keyword-2.png" width="20%" style="margin-right: 10%;">
+</p>
+
 **Search By Category**
 
 Allows users to view a list of films based on their genre or category.
 
+<p align="center">
+  <img src="assets/img-preview/search-by-category-page/category-1.png" width="20%" style="margin-right: 10%;">
+  <img src="assets/img-preview/search-by-category-page/category-2.png" width="20%" style="margin-right: 10%;">
+  <img src="assets/img-preview/search-by-category-page/category-3.png" width="20%">
+</p>
+
 **Favorite Movies**
 
-View a list of the user's favorite movies
+View a list of the user's favorite movies.
+
+<p align="center">
+  <img src="assets/img-preview/favorite-movies-page/favorite-1.png" width="20%" style="margin-right: 10%;">
+  <img src="assets/img-preview/favorite-movies-page/favorite-2.png" width="20%" style="margin-right: 10%;">
+  <img src="assets/img-preview/favorite-movies-page/favorite-3.png" width="20%">
+</p>
