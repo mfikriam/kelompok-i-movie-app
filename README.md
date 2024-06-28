@@ -29,7 +29,9 @@ Displays a list of films currently showing in cinemas, films that will be shown,
 
 <p align="center">
   <img src="assets/img-preview/home-page/home-1.png" width="20%" style="margin-right: 10%;">
+  <span style="margin: 0 9%;"></span> <!-- Jarak antara dua gambar -->
   <img src="assets/img-preview/home-page/home-2.png" width="20%" style="margin-right: 10%;">
+  <span style="margin: 0 9%;"></span> <!-- Jarak antara dua gambar -->
   <img src="assets/img-preview/home-page/home-3.png" width="20%">
 </p>
 
